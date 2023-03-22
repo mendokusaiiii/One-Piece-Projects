@@ -6,5 +6,6 @@
     "extends": "trybe-backend",
     "rules": {
       "sonarjs/no-duplicate-string": ["error", 5]
-    }
+    },
+    "max-lines-per-function": ["warn", { "max": 250, "skipBlankLines": true }]
   }

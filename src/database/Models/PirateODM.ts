@@ -20,6 +20,14 @@ class PirateODM extends AbstractODM<IPirate>{
     });
     super(schema, 'Pirate');
   }
+
+  public async find(): Promise<IPirate[]> {
+    return this.model.find();
+  }
+
+  public async findById(id: string): Promise<IPirate | null> {
+    return this.model.findById(id);
+  }
 }
 
 export default PirateODM;

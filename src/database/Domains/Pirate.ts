@@ -1,6 +1,7 @@
 import IPirate from '../../Interfaces/IPirate';
 
 class Pirate {
+  protected id: string | undefined;
   protected name: string;
   protected alias?: string;
   protected crew: string;
@@ -15,6 +16,7 @@ class Pirate {
   protected goal: string;
   
   constructor(pirate: IPirate) {
+    this.id = pirate.id;
     this.name = pirate.name;
     this.alias = pirate.alias;
     this.crew = pirate.crew;

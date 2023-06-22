@@ -1,4 +1,5 @@
 export default interface IPirate {
+  id?: string;
   name: string;
   alias?: string;
   crew: string;

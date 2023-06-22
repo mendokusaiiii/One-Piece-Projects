@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import IPirate from '../Interfaces/IPirate';
 import PirateSerice from '../Services/PirateService';
+import ErrorHandler from '../Utils/ErrorHandler';
 
 class PirateController {
   private req: Request;
@@ -17,6 +18,7 @@ class PirateController {
 
   public async createOnePirate() {
     const pirate: IPirate = {
+      id: this.req.body.id,
       name: this.req.body.name,
       alias: this.req.body.alias,
       crew: this.req.body.crew,
@@ -34,6 +36,27 @@ class PirateController {
     try {
       const newPirate = await this.service.createOnePirate(pirate);
       return this.res.status(201).json(newPirate);
+    } catch (error) {
+      this.next(error);
+    }
+  }
+
+  public async getPirate() {
+    try {
+      const getAllPirates = await this.service.getPirate();
+      return this.res.status(200).json(getAllPirates);
+    } catch (error) {
+      this.next(error);
+    }
+  }
+  
+  public async getPirateById() {
+    try {
+      const getPirateById = await this.service.getPirateById(this.req.params.id);
+      if(!getPirateById) {
+        throw new ErrorHandler(404, 'Pirate not found');
+      }
+      return this.res.status(200).json(getPirateById)
     } catch (error) {
       this.next(error);
     }

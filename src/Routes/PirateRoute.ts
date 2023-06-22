@@ -5,5 +5,9 @@ const pirateRoute = Router();
 
 pirateRoute.post('/', (req, res, next) => new 
 PirateController(req, res, next).createOnePirate());
+pirateRoute.get('/', (req, res, next) => new 
+PirateController(req, res, next).getPirate());
+pirateRoute.get('/:id',(req, res, next) => new 
+PirateController(req, res, next).getPirateById());
 
 export default pirateRoute;

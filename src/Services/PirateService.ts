@@ -3,7 +3,7 @@ import Pirate from '../database/Domains/Pirate';
 import PirateODM from '../database/Models/PirateODM';
 import ErrorHandler from '../Utils/ErrorHandler';
 
-class PirateSerice {
+class PirateService {
   private createPirateDomain(pirate: IPirate | null): Pirate | null {
     if (pirate) {
       return new Pirate(pirate);
@@ -33,4 +33,4 @@ class PirateSerice {
   }
 }
 
-export default PirateSerice;
+export default PirateService;

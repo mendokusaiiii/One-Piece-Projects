@@ -1,19 +1,19 @@
 import { NextFunction, Request, Response } from 'express';
 import IPirate from '../Interfaces/IPirate';
-import PirateSerice from '../Services/PirateService';
+import PirateService from '../Services/PirateService';
 import ErrorHandler from '../Utils/ErrorHandler';
 
 class PirateController {
   private req: Request;
   private res: Response;
   private next: NextFunction;
-  private service: PirateSerice;
+  private service: PirateService;
 
   constructor(req: Request, res: Response, next: NextFunction) {
     this.req = req;
     this.res = res;
     this.next = next;
-    this.service = new PirateSerice();
+    this.service = new PirateService();
   }
 
   public async createOnePirate() {

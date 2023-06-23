@@ -1,4 +1,4 @@
-import { Schema } from 'mongoose';
+import { Schema, UpdateQuery } from 'mongoose';
 import AbstractODM from './AbstractODM';
 import IPirate from '../../Interfaces/IPirate';
 
@@ -27,6 +27,14 @@ class PirateODM extends AbstractODM<IPirate>{
 
   public async findById(id: string): Promise<IPirate | null> {
     return this.model.findById(id);
+  }
+
+  public async updatePirateById(id: string, obj: IPirate): Promise<IPirate | null> {
+    return this.model.findByIdAndUpdate(
+      { _id: id },
+      { ...obj } as UpdateQuery<IPirate>,
+      { new: true },
+    );
   }
 }
 

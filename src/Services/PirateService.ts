@@ -25,11 +25,25 @@ class PirateService {
 
   public async getPirateById(id: string) {
     if (id.length !== 24) {
-      throw new ErrorHandler(422, 'Invalid mongo id');
+      throw new ErrorHandler(422, 'Invalid pirate id');
     }
     const pirateODM = new PirateODM();
     const findPirateById = await pirateODM.findById(id);
     return this.createPirateDomain(findPirateById);
+  }
+
+  public async updatePirateById(id: string, body: IPirate) {
+    const updatePirate = await this.getPirateById(id);
+    if(!updatePirate) {
+      throw new ErrorHandler(404, 'Pirate not found!');
+    }
+    if (id.length !== 24) {
+      throw new ErrorHandler(422, 'Invalid pirate id')
+    }
+
+    const pirateODM = new PirateODM();
+    const updatePirateId = await pirateODM.updatePirateById(id, body)
+    return this.createPirateDomain(updatePirateId);
   }
 }
 

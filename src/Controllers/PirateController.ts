@@ -52,11 +52,22 @@ class PirateController {
   
   public async getPirateById() {
     try {
-      const getPirateById = await this.service.getPirateById(this.req.params.id);
+      const getPirateById = await 
+      this.service.getPirateById(this.req.params.id);
       if(!getPirateById) {
         throw new ErrorHandler(404, 'Pirate not found');
       }
       return this.res.status(200).json(getPirateById)
+    } catch (error) {
+      this.next(error);
+    }
+  }
+
+  public async updatePirateById() {
+    try {
+      const updatePirate = await 
+      this.service.updatePirateById(this.req.params.id, this.req.body);
+      return this.res.status(200).json(updatePirate);
     } catch (error) {
       this.next(error);
     }

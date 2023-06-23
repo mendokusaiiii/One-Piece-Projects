@@ -1,4 +1,4 @@
-import { Schema } from 'mongoose';
+import { Schema, UpdateQuery } from 'mongoose';
 import AbstractODM from './AbstractODM';
 import IMarine from '../../Interfaces/IMarine';
 
@@ -27,6 +27,14 @@ class MarineODM extends AbstractODM<IMarine>{
 
   public async findById(id: string): Promise<IMarine | null> {
     return this.model.findById(id);
+  }
+
+  public async updateMarineById(id: string, obj: IMarine): Promise<IMarine | null> {
+    return this.model.findByIdAndUpdate(
+      { _id: id },
+      { ...obj } as UpdateQuery<IMarine>,
+      { new: true },
+    );
   }
 }
 

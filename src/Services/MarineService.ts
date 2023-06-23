@@ -25,11 +25,26 @@ class MarineService {
 
   public async getMarineById(id: string) {
     if (id.length !== 24) {
-      throw new ErrorHandler(422, 'Invalid mongo id');
+      throw new ErrorHandler(422, 'Invalid marine id');
     }
     const marineODM = new MarineODM();
     const findMarineById = await marineODM.findById(id);
     return this.createMarineDomain(findMarineById);
+  }
+
+
+  public async updateMarineById(id: string, body: IMarine) {
+    const updateMarine = await this.getMarineById(id);
+    if(!updateMarine) {
+      throw new ErrorHandler(404, 'Marine not found!');
+    }
+    if (id.length !== 24) {
+      throw new ErrorHandler(422, 'Invalid marine id')
+    }
+
+    const marineODM = new MarineODM();
+    const updateMarineId = await marineODM.updateMarineById(id, body)
+    return this.createMarineDomain(updateMarineId);
   }
 }
 

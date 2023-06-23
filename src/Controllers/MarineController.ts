@@ -61,6 +61,16 @@ class MarineController {
       this.next(error);
     }
   }
+
+  public async updateMarineById() {
+    try {
+      const updateMarine = await 
+      this.service.updateMarineById(this.req.params.id, this.req.body);
+      return this.res.status(200).json(updateMarine);
+    } catch (error) {
+      this.next(error);
+    }
+  }
 }
 
 export default MarineController;

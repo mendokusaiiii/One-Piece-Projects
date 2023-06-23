@@ -9,5 +9,8 @@ marineRoute.get('/', (req, res, next) => new
 MarineController(req, res, next).getMarine());
 marineRoute.get('/:id',(req, res, next) => new 
 MarineController(req, res, next).getMarineById());
+marineRoute.put('/:id',(req, res, next) => new 
+MarineController(req, res, next).updateMarineById());
+
 
 export default marineRoute;

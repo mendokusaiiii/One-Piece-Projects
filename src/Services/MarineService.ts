@@ -46,6 +46,17 @@ class MarineService {
     const updateMarineId = await marineODM.updateMarineById(id, body)
     return this.createMarineDomain(updateMarineId);
   }
+
+  public async deleteMarineById(id: string) {
+    const marineODM = new MarineODM();
+    const deleteMarine = await marineODM.deleteMarineById(id);
+    if (!deleteMarine) {
+      throw new ErrorHandler(404, 'Pirate not found')
+    }
+    if (id.length !== 24) {
+      throw new ErrorHandler(422, 'Invalid pirate id')
+    }
+  }
 }
 
 export default MarineService;

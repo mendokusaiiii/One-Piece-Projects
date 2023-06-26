@@ -36,6 +36,11 @@ class MarineODM extends AbstractODM<IMarine>{
       { new: true },
     );
   }
+
+  public async deleteMarineById(id: string): Promise<boolean> {
+    const deleteMarine = await this.model.deleteOne({ _id: id });
+    return deleteMarine.deletedCount > 0;
+  }
 }
 
 export default MarineODM;

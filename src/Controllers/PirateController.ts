@@ -72,6 +72,15 @@ class PirateController {
       this.next(error);
     }
   }
+
+  public async deletePirateById() {
+    try {
+      const deletePirate = await this.service.deletePirateById(this.req.params.id);
+      return this.res.status(201).json(deletePirate);
+    } catch (error) {
+      this.next(error);
+    }
+  }
 }
 
 export default PirateController;

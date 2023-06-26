@@ -45,6 +45,17 @@ class PirateService {
     const updatePirateId = await pirateODM.updatePirateById(id, body)
     return this.createPirateDomain(updatePirateId);
   }
+
+  public async deletePirateById(id: string) {
+    const pirateODM = new PirateODM();
+    const deletePirate = await pirateODM.deletePirateById(id);
+    if (!deletePirate) {
+      throw new ErrorHandler(404, 'Pirate not found')
+    }
+    if (id.length !== 24) {
+      throw new ErrorHandler(422, 'Invalid pirate id')
+    }
+  }
 }
 
 export default PirateService;

@@ -11,5 +11,7 @@ pirateRoute.get('/:id',(req, res, next) => new
 PirateController(req, res, next).getPirateById());
 pirateRoute.put('/:id',(req, res, next) => new 
 PirateController(req, res, next).updatePirateById());
+pirateRoute.delete('/:id',(req, res, next) => new 
+PirateController(req, res, next).deletePirateById());
 
 export default pirateRoute;

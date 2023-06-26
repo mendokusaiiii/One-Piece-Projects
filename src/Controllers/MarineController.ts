@@ -71,6 +71,15 @@ class MarineController {
       this.next(error);
     }
   }
+
+  public async deleteMarineById() {
+    try {
+      const deleteMarine = await this.service.deleteMarineById(this.req.params.id);
+      return this.res.status(201).json(deleteMarine);
+    } catch (error) {
+      this.next(error);
+    }
+  }
 }
 
 export default MarineController;

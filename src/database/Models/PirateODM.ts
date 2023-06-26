@@ -36,6 +36,11 @@ class PirateODM extends AbstractODM<IPirate>{
       { new: true },
     );
   }
+
+  public async deletePirateById(id: string): Promise<boolean> {
+    const deletePirate = await this.model.deleteOne({ _id: id });
+    return deletePirate.deletedCount > 0;
+  }
 }
 
 export default PirateODM;

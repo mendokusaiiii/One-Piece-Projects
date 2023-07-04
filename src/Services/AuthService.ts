@@ -21,6 +21,23 @@ class AuthService {
   }
 
   public async createUser(user: any): Promise<any> {
-    
+    const encryptedPassword = this.userSecurity.encrypt(user.password);
+    const newUser = {
+      username: user.username,
+      name: user.name,
+      email: user.email,
+      password: encryptedPassword,
+      isAdmin: user.isAdmin,
+    }
+    const savedUser = await this.userRepository.createUser(newUser);
+    return savedUser;
   }
+
+  public comparePassword(password: string, decryptedPassword: string): boolean {
+    return this.userSecurity.comparePassword(password, decryptedPassword)
+  }
+
+  // public async generateTokenAccess(id: string, password: string): Promise<string> {
+  //   const user = 
+  // }
 }
